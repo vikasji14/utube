@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "postbuild":"rimraf build/static/**/*.map",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
