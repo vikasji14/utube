@@ -19,7 +19,7 @@ function MySubscriptions() {
     
     return (
         <>
-            <div className="flex gap-2 p-2 text-white items-center bg-[#222222]">
+            <div className="flex gap-2 p-2 text-white items-center my-2">
                 {subscriptions?.map((subscription) => (
                     <div
                         key={subscription?.subscribedChannel?._id}
@@ -31,14 +31,14 @@ function MySubscriptions() {
                                 subscription?.subscribedChannel?.username
                             }
                         />
-                        <h5 className="text-xs">
+                        <h5 className="my-1">
                             {subscription?.subscribedChannel?.username}
                         </h5>
                     </div>
                 ))}
             </div>
 
-            <div className="text-white mb-20 sm:mb-0 w-full grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 overflow-y-scroll">
+            <div className="text-white mb-20  sm:mb-0 w-full grid xl:grid-cols-4 p-2 sm:grid-cols-2 grid-cols-1 overflow-y-scroll">
                 {subscriptions?.map((subscription) => (
                     <Link
                         to={`/watch/${subscription?.subscribedChannel?.latestVideo?._id}`}

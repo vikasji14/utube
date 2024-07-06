@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserChannelSubscribers } from "../../store/Slices/subscriptionSlice";
 import { Avatar, Button } from "../../components";
 import { Link } from "react-router-dom";
+import { GoBellFill } from "react-icons/go";
 
 function ChannelSubscribers() {
     const dispatch = useDispatch();
@@ -40,10 +41,10 @@ function ChannelSubscribers() {
                         </div>
                     </div>
                     <div>
-                        <Button className="bg-purple-500 text-black text-xs py-1 px-2">
-                            {subscriber?.subscriber?.subscribedToSubscriber
-                                ? "Subscribed"
-                                : "subscribe"}
+                        <Button className={` text-black text-xs py-1 px-2 ${subscriber?.subscriber?.subscribedToSubscriber ? 'bg-black border-2 ' :'bg-purple-500'}`}>
+                            {subscriber?.subscriber?.subscribedToSubscriber 
+                                ? <div className="flex items-center gap-2 justify-center"><GoBellFill/> Subscribed</div>
+                                : "subscribe"}  
                         </Button>
                     </div>
                 </Link>

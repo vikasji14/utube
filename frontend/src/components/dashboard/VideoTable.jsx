@@ -43,7 +43,7 @@ function VideoTable({ videos, setPopUp, setVideoDetails }) {
                                         </span>
                                     ) : (
                                         <span className="text-orange-500 py-1 px-2 border border-orange-500 rounded-full">
-                                            UnPublished
+                                            Private
                                         </span>
                                     )}
                                 </td>

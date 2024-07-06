@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Logo, Button, Input } from "./index";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import { getCurrentUser, userLogin } from "../store/Slices/authSlice.js";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginSkeleton from "../skeleton/loginSkeleton.jsx";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 
 function Login() {
     const {
@@ -16,6 +18,11 @@ function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const loading = useSelector((state) => state.auth?.loading);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const submit = async (data) => {
         const isEmail = data.username.includes("@");
@@ -49,7 +56,7 @@ function Login() {
                         <Input
                             label="Username / email : "
                             type="text"
-                            placeholder="example@gmail.com"
+                            placeholder="Enter username or email"
                             {...register("username", {
                                 required: "username is required",
                             })}
@@ -59,16 +66,28 @@ function Login() {
                                 {errors.username.message}
                             </span>
                         )}
-                        <Input
-                            label="Password: "
-                            type="password"
-                            placeholder="1kd074fjw0"
-                            {...register("password", {
-                                required: "password is required",
-                            })}
-                        />
+
+                        <div className=" flex">
+                            <Input
+                                label="Password: "
+                                type={showPassword ? 'text' : 'password'}
+                                placeholder="Password"
+                                {...register("password", {
+                                    required: "password is required",
+                                })}
+
+
+                            />
+                            <span
+                                onClick={togglePasswordVisibility}
+                                className=" fixed flex items-center justify-end cursor-pointer my-10 ml-[340px]"
+                            >
+                                {showPassword ? <FaEyeSlash size={18}/> : <FaEye size={18} />}
+                            </span>
+                        </div>
+
                         {errors.password && (
-                            <span>{errors.password.message}</span>
+                            <span className="text-red-500">{errors.password.message}</span>
                         )}
 
                         <Button

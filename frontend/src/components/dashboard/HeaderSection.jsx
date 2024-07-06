@@ -3,13 +3,13 @@ import Button from "../Button";
 
 function HeaderSection({ username, setPopUp }) {
     return (
-        <section className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+        <section className="flex flex-col sm:flex-row  justify-between sm:items-center gap-2">
             <div>
                 <h1 className="sm:text-2xl text-xl font-bold">
                     Welcome Back, {username}{" "}
                 </h1>
                 <p className="text-xs font-light text-slate-400 ">
-                    Seamless Video Management, Elevated Results.
+                    Seamless Video Management, Elevated Results. | Dashboard
                 </p>
             </div>
             <div>

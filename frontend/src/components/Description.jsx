@@ -4,6 +4,8 @@ import { Like, Button } from "./index";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toggleSubscription } from "../store/Slices/subscriptionSlice";
+import { GoBellFill } from "react-icons/go";
+
 
 function Description({
     title,
@@ -79,11 +81,11 @@ function Description({
                             <div onClick={handleSubsribe}>
                                 <Button
                                     onClick={handleSubscribe}
-                                    className="border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-purple-500"
+                                    className={`border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1  ${localIsSubscribed ? 'bg-black border-2 ' :'bg-purple-500'}`}
                                 >
                                     {localIsSubscribed
-                                        ? "Subscribed"
-                                        : "Subscribe"}
+                                        ? <div className="flex items-center gap-2 justify-center"><GoBellFill/> Subscribed</div>
+                                        :  "Subscribe"}
                                 </Button>
                             </div>
                         </div>
