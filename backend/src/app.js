@@ -6,7 +6,7 @@ import morgan from "morgan";
 const app = new express();
 
 const allowedOrigins = [
-    "https://utube.verce.app",
+    "https://apnautube.vercel.app/",
     "http://localhost:5173"
 ];
 
