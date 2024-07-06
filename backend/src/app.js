@@ -6,7 +6,7 @@ import morgan from "morgan";
 const app = new express();
 
 const allowedOrigins = [
-    "https://apnautube.vercel.app",
+    "https://mystreamx.vercel.app",
     "http://localhost:5173"
 ];
 
