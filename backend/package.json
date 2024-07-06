@@ -2,7 +2,7 @@
     "name": "utube-backend",
     "version": "1.0.0",
     "description": "backend with coffee",
-    "main": "index.js",
+    "main": "src/index.js",
     "type": "module",
     "engines": {
         "node": "16.x"
