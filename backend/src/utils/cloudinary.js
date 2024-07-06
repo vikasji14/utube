@@ -1,33 +1,31 @@
-import {v2 as cloudinary} from "cloudinary"
-import fs from 'fs'
+import { v2 as cloudinary } from "cloudinary";
+import fs from "fs";
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
-})
-
-
+});
+console.log("api key",process.env.CLOUDINARY_API_KEY);
 const uploadOnCloudinary = async (localFilePath) => {
-    try{
-        if(!localFilePath) return null
+    console.log("yahan tk aaya ki nhi " ,localFilePath);
+    try {
+        if (!localFilePath) return null;
 
-        //upload the file on cloud
-         const cloudResponse = await cloudinary.uploader.upload(localFilePath,{
-            resource_type: "auto"
-        })
+        //upload to cloudinary if localFilePath exists
+        const result = await cloudinary.uploader.upload(localFilePath, {
+            resource_type: 'auto',
+        });
 
-        //file has been uploaded on cloud successfully
-        console.log("File has been uploaded on cloud successfully", cloudResponse)
-        return cloudResponse
-    }catch(err){
-        console.log(err)
-        fs.unlinkSync(localFilePath)        //remove the localy saved file as the uplaod operation failed
-        return null;
+        console.log("file uploaded to cloudinary", result.url);
+
+        fs.unlinkSync(localFilePath); //remove file from localFilePath after uploading to cloudinary
+        return result;
+    } catch (error) {
+        fs.unlinkSync(localFilePath);
+        return error;
     }
-
-}
-
+};
 
 const deleteOnCloudinary = async (public_id, resource_type="image") => {
     try {
@@ -43,5 +41,4 @@ const deleteOnCloudinary = async (public_id, resource_type="image") => {
     }
 };
 
-
-export {uploadOnCloudinary,deleteOnCloudinary}
+export { uploadOnCloudinary, deleteOnCloudinary };
