@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:3000/api/v1'
+      '/api': 'https://utube-backend.vercel.app/api/v1'
     }
   }
 })
