@@ -5,10 +5,23 @@ import morgan from "morgan";
 
 const app = new express();
 
+const allowedOrigins = [
+    "https://utube.verce.app",
+    "http://localhost:5173"
+];
+
 app.use(
     cors({
-        origin: process.env.CORS_ORIGIN,
-        credentials: true,
+        origin: function (origin, callback) {
+            if (!origin) return callback(null, true);
+
+            if (allowedOrigins.indexOf(origin) === -1) {
+                return callback(new Error('Not allowed by CORS'), false);
+            }
+
+            return callback(null, true);
+        },
+        credentials: true
     })
 );
 
