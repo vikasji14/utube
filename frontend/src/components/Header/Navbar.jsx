@@ -7,7 +7,16 @@ import {
     CiSearch,
     HiOutlineVideoCamera,
     SlMenu,
+    IoFolderOutline
 } from "../icons.js";
+import {
+    BiHistory,
+    // CiSettings,
+    // HiOutlineVideoCamera,
+    // IoFolderOutline,
+    RiHome6Line,
+    TbUserCheck,
+} from "../icons";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { IoMdLogOut } from "react-icons/io";
@@ -29,15 +38,36 @@ function Navbar() {
 
     const sidePanelItems = [
         {
+            icon: <RiHome6Line size={25} />,
+            title: "Home",
+            url: "/",
+        },
+        {
             icon: <BiLike size={25} />,
             title: "Liked Videos",
             url: "/liked-videos",
+        },
+        {
+            icon: <BiHistory size={25} />,
+            title: "History",
+            url: "/history",
         },
         {
             icon: <HiOutlineVideoCamera size={25} />,
             title: "My Content",
             url: `/channel/${username}`,
         },
+        {
+            icon: <IoFolderOutline size={25} />,
+            title: "Dashboard",
+            url: "/collections",
+        },
+        {
+            icon: <TbUserCheck size={25} />,
+            title: "Subscriptions",
+            url: "/subscriptions",
+        },
+      
     ];
 
     return (

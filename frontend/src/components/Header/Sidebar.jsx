@@ -40,7 +40,7 @@ function Sidebar() {
         },
         {
             icon: <IoFolderOutline size={25} />,
-            title: "Collections",
+            title: "Dashboard",
             url: "/collections",
         },
         {
@@ -64,10 +64,11 @@ function Sidebar() {
             url: "/history",
         },
         {
-            icon: <IoFolderOutline size={25} />,
-            title: "Collections",
-            url: "/collections",
+            icon: <HiOutlineVideoCamera size={25} />,
+            title: "My Content",
+            url: `/channel/${username}`,
         },
+       
         {
             icon: <TbUserCheck size={25} />,
             title: "Subscriptions",
