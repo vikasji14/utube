@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { createTweet } from "../store/Slices/tweetSlice";
 import { createAComment } from "../store/Slices/commentSlice";
+import { BsSendFill } from "react-icons/bs";
+
 
 function TweetAndComment({ tweet, comment, videoId }) {
     const { register, handleSubmit, setValue } = useForm();
@@ -20,6 +22,7 @@ function TweetAndComment({ tweet, comment, videoId }) {
         }
     };
 
+
     return (
         <>
             <form
@@ -34,9 +37,10 @@ function TweetAndComment({ tweet, comment, videoId }) {
                 />
                 <Button
                     type="submit"
-                    className="bg-purple-500 px-2 py-1 text-black hover:scale-110 transition-all ease-in absolute sm:bottom-8 sm:right-8 bottom-8 right-4 text-xs sm:text-base"
+                    className="bg-purple-500 px-2 py-1 cursor-pointer text-black hover:scale-110 transition-all ease-in absolute sm:bottom-8 sm:right-8 bottom-8 right-4 text-xs sm:text-base"
                 >
-                    Send
+                   <span className="flex gap-1 items-center"> <span>Send</span> <BsSendFill size={15} /></span>
+                
                 </Button>
             </form>
         </>

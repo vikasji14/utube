@@ -9,8 +9,8 @@ function Edit({ initialContent, onCancel, onSave }) {
 
     return (
         <div className="w-full text-sm">
-            <input
-                className="bg-[#222222] outline-none border-b w-3/4 p-2"
+            <textarea
+                className="bg-[#222222] outline-none border-b md:w-3/4 h-40 w-full p-2"
                 value={editedContent}
                 autoFocus
                 onChange={(e) => setEditedContent(e.target.value)}

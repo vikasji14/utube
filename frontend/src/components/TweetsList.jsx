@@ -16,8 +16,6 @@ function TweetsList({
     likesCount = 0,
     isLiked,
 }) {
-    console.log("fullName", fullName)
-    console.log("username", username)
     const avatar2 = useSelector((state) => state.user?.profileData?.avatar.url);
     const authUsername = useSelector((state) => state.auth?.userData?.username);
     const dispatch = useDispatch();
@@ -120,19 +118,6 @@ function TweetsList({
 
                     </div>
 
-                    {/* 3 dots */}
-                    {/* {authUsername == username && (
-                        <div className="w-5 h-5  font-bold pl-10 right-0  cursor-pointer">
-                            <HiOutlineDotsVertical
-                                onClick={() =>
-                                    setEditState((prevState) => ({
-                                        ...prevState,
-                                        isOpen: !prevState.isOpen,
-                                    }))
-                                }
-                            />
-                        </div>
-                    )} */}
 
                     {/* edit and delete dropdown */}
                     {editState.isOpen && (

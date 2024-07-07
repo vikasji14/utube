@@ -48,6 +48,8 @@ function Sidebar() {
             title: "Subscriptions",
             url: "/subscriptions",
         },
+      
+        
     ];
 
     const bottomBarItems = [

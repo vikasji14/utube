@@ -81,17 +81,18 @@ function Description({
                             <div onClick={handleSubsribe}>
                                 <Button
                                     onClick={handleSubscribe}
-                                    className={`border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1  ${isSubscribed ? 'bg-black border-2 ' :'bg-purple-500'}`}
+                                    className='border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1'
                                 >
                                     {localIsSubscribed
-                                        ? <div className="flex items-center gap-2 justify-center"><GoBellFill/> Subscribed</div>
-                                        :  "Subscribe"}
+                                        ? <div className="flex items-center gap-2 border-2 border-slate-200 px-4 py-2 justify-center"><GoBellFill/> Subscribed</div>
+                                        :  <div className=" bg-purple-500 px-4 py-2">Subscribe</div>}
                                 </Button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <p className="text-xs bg-[#222222] rounded-lg p-2 outline-none">
+                <p>Description</p>
+                <p className="text-xs bg-[#222222] rounded-lg p-2 h-40  outline-none">
                     {description}
                 </p>
             </section>

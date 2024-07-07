@@ -47,113 +47,132 @@ function CommentsList({
 
     return (
         <>
-            <div className="text-white w-full flex justify-start items-center sm:gap-5 gap-3 border-b border-slate-600 p-3 sm:p-5">
-                <div className="w-12">
-                    <img
-                        src={avatar || avatar2}
-                        className="w-10 h-10 object-cover rounded-full"
-                    />
+            <div className="text-white w-full flex flex-col  justify-start items-start border-b border-slate-600 p-2">
+                <div className="w-full flex flex-row justify-between items-center">
+                    <div className="flex flex-row gap-1">
+                        <img
+                            src={avatar || avatar2}
+                            className="w-12 h-12 object-cover rounded-full"
+                        />
+                        <div className="flex flex-col gap-1">
+                            <span className="flex flex-row items-center justify-between">
+                                <span className="text-[15px] text-gray-400 "> @{username}</span>
+                                <span className="text-[15px] text-gray-400 ">
+                                    <div>
+                                        {authUsername == username && (
+                                            <div className="w-8 h-8 pr-8 font-bold pl-10 right-0 text-2xl  cursor-pointer">
+                                                <HiOutlineDotsVertical
+                                                    onClick={() =>
+                                                        setEditState((prevState) => ({
+                                                            ...prevState,
+                                                            isOpen: !prevState.isOpen,
+                                                        }))
+                                                    }
+                                                />
+                                                {/* edit and delete dropdown */}
+                                                {editState.isOpen && (
+                                                    <div className="border bg-black text-lg border-slate-600 absolute left-0  text-center  rounded-xl">
+                                                        <ul>
+                                                            <li
+                                                                className="hover:opacity-50 px-5 cursor-pointer border-b border-slate-600"
+                                                                onClick={() =>
+                                                                    setEditState((prevState) => ({
+                                                                        ...prevState,
+                                                                        editing: !prevState.editing,
+                                                                        isOpen: false,
+                                                                    }))
+                                                                }
+                                                            >
+                                                                Edit
+                                                            </li>
+                                                            <li
+                                                                className="px-5 hover:opacity-50 cursor-pointer"
+                                                                onClick={() =>
+                                                                    setEditState((prevState) => ({
+                                                                        ...prevState,
+                                                                        delete: true,
+                                                                        isOpen: false,
+                                                                    }))
+                                                                }
+                                                            >
+                                                                Delete
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                </span>
+                            </span>
+                            {/* edit and write comment */}
+                            <span>
+                                {editState.editing ? (
+                                    <Edit
+                                        className="w-[800px]"
+                                        initialContent={editState.editedContent}
+                                        onCancel={() =>
+                                            setEditState((prevState) => ({
+                                                ...prevState,
+                                                editing: false,
+                                                isOpen: false,
+                                            }))
+                                        }
+                                        onSave={handleEditComment}
+                                    />
+                                ) : (
+                                    <div className=" overflow-hidden pr-4 w-[330px] md:w-[800px] break-words">
+                                        {editState.editedContent}
+                                    </div>
+
+
+                                )}
+                            </span>
+                        </div>
+
+
+                    </div>
+
+
+
+
                 </div>
-                <div className="w-full flex flex-col gap-1 relative">
-                    <div className="flex items-center gap-2">
-                        <h2 className="text-xs">{username}</h2>
+
+                <div className="flex flex-wrap gap-1">
+
+                    {/* Like the tweet */}
+                    <div className="mt-4 pl-10">
+                        <Like
+                            isLiked={isLiked}
+                            likesCount={likesCount}
+                            tweetId={commentId}
+                            size={20}
+                        />
                         <span className="text-xs text-slate-400">
                             {timeAgo(createdAt)}
                         </span>
+
                     </div>
 
-                    {/*dropdown for edit and delete comment */}
-                    {authUsername === username && (
-                        <div className="absolute right-0">
-                            <div className="relative">
-                                <HiOutlineDotsVertical
-                                    className="text-white cursor-pointer"
-                                    onClick={() =>
-                                        setEditState((prevState) => ({
-                                            ...prevState,
-                                            isOpen: !prevState.isOpen,
-                                        }))
-                                    }
-                                />
 
-                                {editState.isOpen && (
-                                    <div className="border bg-[#222222] text-lg border-slate-600 absolute text-center right-2 rounded-xl">
-                                        <ul>
-                                            <li
-                                                className="hover:opacity-50 px-5 cursor-pointer border-b border-slate-600"
-                                                onClick={() =>
-                                                    setEditState(
-                                                        (prevState) => ({
-                                                            ...prevState,
-                                                            editing:
-                                                                !prevState.editing,
-                                                            isOpen: false,
-                                                        })
-                                                    )
-                                                }
-                                            >
-                                                Edit
-                                            </li>
-                                            <li
-                                                className="px-5 hover:opacity-50 cursor-pointer"
-                                                onClick={() =>
-                                                    setEditState(
-                                                        (prevState) => ({
-                                                            ...prevState,
-                                                            delete: true,
-                                                            isOpen: false,
-                                                        })
-                                                    )
-                                                }
-                                            >
-                                                Delete
-                                            </li>
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    )}
 
-                    {/* Delete Confirm popup */}
+
+
+                    {/* deleteing the tweet */}
                     {editState.delete && (
                         <DeleteConfirmation
+                            tweet={true}
                             onCancel={() =>
                                 setEditState((prevState) => ({
                                     ...prevState,
-                                    delete: false,
-                                    isOpen: false,
+                                    delete: !prevState.delete,
                                 }))
                             }
                             onDelete={handleDeleteComment}
-                            comment={true}
                         />
                     )}
 
-                    {/* edit comment */}
-                    {editState.editing ? (
-                        <Edit
-                            initialContent={editState.editedContent}
-                            onCancel={() =>
-                                setEditState((prevState) => ({
-                                    ...prevState,
-                                    editing: false,
-                                    isOpen: false,
-                                }))
-                            }
-                            onSave={handleEditComment}
-                        />
-                    ) : (
-                        editState.editedContent
-                    )}
 
-                    {/* Like for comments */}
-                    <Like
-                        isLiked={isLiked}
-                        likesCount={likesCount}
-                        commentId={commentId}
-                        size={17}
-                    />
                 </div>
             </div>
         </>
