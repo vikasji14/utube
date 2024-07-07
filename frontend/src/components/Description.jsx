@@ -81,7 +81,7 @@ function Description({
                             <div onClick={handleSubsribe}>
                                 <Button
                                     onClick={handleSubscribe}
-                                    className={`border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1  ${localIsSubscribed ? 'bg-black border-2 ' :'bg-purple-500'}`}
+                                    className={`border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1  ${isSubscribed ? 'bg-black border-2 ' :'bg-purple-500'}`}
                                 >
                                     {localIsSubscribed
                                         ? <div className="flex items-center gap-2 justify-center"><GoBellFill/> Subscribed</div>

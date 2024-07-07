@@ -72,7 +72,7 @@ function ChannelNavigate({ username, edit }) {
                             : ""
                     }
                 >
-                    <p className="p-2">Subscribed</p>
+                    <p className="p-2">Subscriber</p>
                 </NavLink>
             </section>
         </>

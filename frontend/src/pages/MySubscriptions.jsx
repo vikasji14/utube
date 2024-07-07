@@ -23,7 +23,7 @@ function MySubscriptions() {
                 {subscriptions?.map((subscription) => (
                     <div
                         key={subscription?.subscribedChannel?._id}
-                        className="flex flex-col items-center overflow-x-scroll"
+                        className="flex flex-col items-center overflow-x-scroll"  
                     >
                         <Avatar
                             src={subscription?.subscribedChannel?.avatar.url}
@@ -32,7 +32,7 @@ function MySubscriptions() {
                             }
                         />
                         <h5 className="my-1">
-                            {subscription?.subscribedChannel?.username}
+                            {subscription?.subscribedChannel?.username}                           
                         </h5>
                     </div>
                 ))}

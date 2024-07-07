@@ -10,11 +10,14 @@ function TweetsList({
     tweetId,
     avatar,
     username,
+    fullName,
     createdAt,
     content,
     likesCount = 0,
     isLiked,
 }) {
+    console.log("fullName",fullName)
+    console.log("username",username)
     const avatar2 = useSelector((state) => state.user?.profileData?.avatar.url);
     const authUsername = useSelector((state) => state.auth?.userData?.username);
     const dispatch = useDispatch();
