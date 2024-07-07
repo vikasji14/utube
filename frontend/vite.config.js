@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': 'https://utube-backend-qerv.onrender.com'
+      // '/api': 'http://localhost:3000'
     }
   }
 })

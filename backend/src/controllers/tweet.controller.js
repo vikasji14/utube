@@ -11,8 +11,7 @@ const createTweet = asyncHandler(async (req, res) => {
     if (!content) {
         throw new ApiError(400, "content is required");
     }
-
-    const tweet = await Tweet.create({
+    const tweet = await Tweet.create({  
         content,
         owner: req.user?._id,
     });
@@ -115,6 +114,7 @@ const getUserTweets = asyncHandler(async (req, res) => {
                     {
                         $project: {
                             username: 1,
+                            fullName: 1,
                             "avatar.url": 1,
                         },
                     },

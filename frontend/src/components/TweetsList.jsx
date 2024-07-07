@@ -16,8 +16,8 @@ function TweetsList({
     likesCount = 0,
     isLiked,
 }) {
-    console.log("fullName",fullName)
-    console.log("username",username)
+    console.log("fullName", fullName)
+    console.log("username", username)
     const avatar2 = useSelector((state) => state.user?.profileData?.avatar.url);
     const authUsername = useSelector((state) => state.auth?.userData?.username);
     const dispatch = useDispatch();
@@ -52,20 +52,41 @@ function TweetsList({
 
     return (
         <>
-            <div className="text-white w-full flex justify-start items-center sm:gap-5 gap-3 border-b border-slate-600 p-3 sm:p-5">
-                <div className="w-10">
-                    <img
-                        src={avatar || avatar2}
-                        className="w-8 h-8 object-cover rounded-full"
-                    />
-                </div>
-                <div className="w-full flex flex-col gap-1 relative">
-                    <div className="flex items-center gap-2">
-                        <h2 className="text-xs">{username}</h2>
-                        <span className="text-xs text-slate-400">
-                            {timeAgo(createdAt)}
-                        </span>
+            <div className="text-white w-full flex flex-col  justify-start items-start border-b border-slate-600 p-4">
+                <div className="w-full flex flex-row justify-between items-center">
+                    <div className="flex flex-row gap-1">
+                        <img
+                            src={avatar || avatar2}
+                            className="w-12 h-12 object-cover rounded-full"
+                        />
+                        <div className="flex items-center gap-2">
+                            <span className="flex flex-col pl-2 ">
+                                <span>{fullName}</span>
+                                <span className="text-xs"> @{username}</span>
+                            </span>
+                           
+                        </div>
+
                     </div>
+
+                    <div>
+                        {authUsername == username && (
+                            <div className="w-8 h-8 pr-4 font-bold pl-10 right-0 text-2xl  cursor-pointer">
+                                <HiOutlineDotsVertical
+                                    onClick={() =>
+                                        setEditState((prevState) => ({
+                                            ...prevState,
+                                            isOpen: !prevState.isOpen,
+                                        }))
+                                    }
+                                />
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <div className="w-full pl-14 flex flex-col gap-1 relative">
+
 
                     {/* editing the tweet */}
 
@@ -86,16 +107,22 @@ function TweetsList({
                     )}
 
                     {/* Like the tweet */}
-                    <Like
-                        isLiked={isLiked}
-                        likesCount={likesCount}
-                        tweetId={tweetId}
-                        size={20}
-                    />
+                    <div className="mt-4">
+                        <Like
+                            isLiked={isLiked}
+                            likesCount={likesCount}
+                            tweetId={tweetId}
+                            size={20}
+                        />
+                         <span className="text-xs text-slate-400">
+                            {timeAgo(createdAt)}
+                        </span>
+
+                    </div>
 
                     {/* 3 dots */}
-                    {authUsername == username && (
-                        <div className="w-5 h-5 absolute right-0 cursor-pointer">
+                    {/* {authUsername == username && (
+                        <div className="w-5 h-5  font-bold pl-10 right-0  cursor-pointer">
                             <HiOutlineDotsVertical
                                 onClick={() =>
                                     setEditState((prevState) => ({
@@ -105,7 +132,7 @@ function TweetsList({
                                 }
                             />
                         </div>
-                    )}
+                    )} */}
 
                     {/* edit and delete dropdown */}
                     {editState.isOpen && (
